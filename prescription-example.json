@@ -1,0 +1,126 @@
+{
+  "sectionTitle": {
+    "icon": "fas fa-prescription-bottle-alt",
+    "text": "中药调理方案"
+  },
+  "prescriptions": [
+    {
+      "name": "六味地黄汤加味",
+      "icon": "fas fa-seedling",
+      "sections": [
+        {
+          "title": "组成与剂量",
+          "icon": "fas fa-list-ul",
+          "type": "list",
+          "content": [
+            "熟地黄 9克 · 山茱萸 9克 · 山药 15克",
+            "茯苓 9克 · 牡丹皮 9克 · 泽泻 9克",
+            "炒枣仁 15克 · 远志 7.5克"
+          ]
+        },
+        {
+          "title": "功能主治",
+          "icon": "fas fa-stethoscope",
+          "type": "text",
+          "content": "滋阴补肾、交通心肾，重点缓解阴虚火旺导致的心烦、失眠、腰膝酸软等表现。"
+        },
+        {
+          "title": "服用建议",
+          "icon": "fas fa-calendar-day",
+          "type": "text",
+          "content": "每日一剂，水煎两次合并，分早晚温服。建议持续调理 2~4 周后复评。"
+        },
+        {
+          "title": "调整方向",
+          "icon": "fas fa-lightbulb",
+          "type": "text",
+          "content": "若出现口干咽燥可酌加麦冬、生地；若失眠偏重，可加夜交藤、柏子仁加强安神。"
+        },
+        {
+          "title": "注意事项",
+          "icon": "fas fa-exclamation-triangle",
+          "type": "text",
+          "content": "服药期间避免辛辣、烧烤及过量油腻食物，留意大便是否偏稀，必要时请医生调整方剂。"
+        }
+      ]
+    },
+    {
+      "name": "酸枣仁滋养粥",
+      "icon": "fas fa-bowl-food",
+      "sections": [
+        {
+          "title": "食材搭配",
+          "icon": "fas fa-list-ul",
+          "type": "list",
+          "content": [
+            "酸枣仁 30克（微炒后研碎）",
+            "大米 100克 · 可加入百合 15克",
+            "生地汁 20毫升（或用鲜地黄榨汁）"
+          ]
+        },
+        {
+          "title": "烹制步骤",
+          "icon": "fas fa-utensils",
+          "type": "steps",
+          "content": [
+            "酸枣仁加温水浸泡 30 分钟取汁，残渣备用。",
+            "用酸枣仁汁煮米成粥，八成熟时倒入生地汁，小火再煨 5 分钟。",
+            "依据口味加入少量冰糖或枸杞，晚餐或睡前 1 小时食用。"
+          ]
+        },
+        {
+          "title": "适宜人群",
+          "icon": "fas fa-mortar-pestle",
+          "type": "text",
+          "content": "睡眠浅、易醒、夜间心烦口干者尤宜。可作为日常保健，每周 3~4 次，连用 4 周观察改善。"
+        },
+        {
+          "title": "温馨提示",
+          "icon": "fas fa-circle-info",
+          "type": "text",
+          "content": "孕期或脾胃虚弱、大便溏稀者需酌情减量；若出现湿重或食欲下降，可暂停食用并咨询医师。"
+        }
+      ]
+    },
+    {
+      "name": "生龙牡安神方",
+      "icon": "fas fa-yin-yang",
+      "sections": [
+        {
+          "title": "组成",
+          "icon": "fas fa-list-ul",
+          "type": "list",
+          "content": [
+            "生龙骨 9克 · 生牡蛎 9克（先煎）",
+            "炒枣仁 15克 · 远志 7.5克 · 茯神 4.5克",
+            "炙甘草 3克 · 五味子 4.5克"
+          ]
+        },
+        {
+          "title": "调理思路",
+          "icon": "fas fa-brain",
+          "type": "text",
+          "content": "以重镇安神、交通心肾为主，适用于惊悸不安、心胆气虚、睡眠浅而多梦的情况。"
+        },
+        {
+          "title": "用法",
+          "icon": "fas fa-clipboard-check",
+          "type": "text",
+          "content": "每日一剂，先煎龙骨、牡蛎 20 分钟，再入余药同煎，分早晚温服。连服 7~10 剂评估效果。"
+        },
+        {
+          "title": "观察重点",
+          "icon": "fas fa-eye",
+          "type": "text",
+          "content": "关注睡眠深度、夜间心悸频率及情绪波动。如有胃部不适，可加陈皮、半夏和姜汁调和。"
+        },
+        {
+          "title": "避免事项",
+          "icon": "fas fa-exclamation-circle",
+          "type": "text",
+          "content": "不宜与含高钙的保健品同服；高血压、甲状腺功能异常者请先遵医嘱再行调理。"
+        }
+      ]
+    }
+  ]
+}

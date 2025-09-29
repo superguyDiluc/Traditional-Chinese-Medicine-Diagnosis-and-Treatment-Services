@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中医调理展示 - 心肾不交 · 阴虚火旺</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --tcm-brand-green: #2e7d32;
+            --tcm-accent-green: #66bb6a;
+            --tcm-soft-bg: #f5f8f4;
+            --tcm-text-main: #2f3a2f;
+            --tcm-text-muted: #5c675c;
+            --tcm-border-radius-lg: 18px;
+            --tcm-shadow-soft: 0 20px 40px rgba(46, 125, 50, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans SC', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f8faf7 0%, #eef5ef 100%);
+            color: var(--tcm-text-main);
+            line-height: 1.7;
+        }
+
+        .tcm-plan-demo {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 28px 20px 60px;
+        }
+
+        .tcm-plan {
+            display: grid;
+            gap: 34px;
+        }
+
+        .tcm-hero {
+            position: relative;
+            padding: 32px 32px 36px;
+            border-radius: var(--tcm-border-radius-lg);
+            background: radial-gradient(circle at top left, rgba(102, 187, 106, 0.2), transparent 60%),
+                        radial-gradient(circle at bottom right, rgba(46, 125, 50, 0.12), transparent 55%),
+                        #ffffff;
+            box-shadow: var(--tcm-shadow-soft);
+            overflow: hidden;
+        }
+
+        .tcm-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(102, 187, 106, 0.15), rgba(46, 125, 50, 0.05));
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .tcm-hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 18px;
+        }
+
+        .tcm-hero-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 14px;
+        }
+
+        .tcm-hero-title h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: var(--tcm-brand-green);
+            letter-spacing: 0.04em;
+        }
+
+        .tcm-hero-title .tcm-tagline {
+            font-size: 1rem;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tcm-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--tcm-brand-green);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .tcm-badge i {
+            font-size: 0.9rem;
+        }
+
+        .tcm-hero-summary {
+            display: grid;
+            gap: 14px;
+            padding: 16px 18px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        .tcm-summary-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .tcm-summary-box {
+            flex: 1 1 180px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: linear-gradient(120deg, #ffffff, #f4fbf6);
+            border: 1px solid rgba(102, 187, 106, 0.18);
+            display: grid;
+            gap: 6px;
+        }
+
+        .tcm-summary-box .tcm-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            color: var(--tcm-text-muted);
+            text-transform: uppercase;
+        }
+
+        .tcm-summary-box .tcm-value {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .tcm-curve-note {
+            padding: 16px 18px;
+            border-left: 4px solid var(--tcm-accent-green);
+            background: rgba(46, 125, 50, 0.06);
+            border-radius: 12px;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-section-title {
+            margin: 0 0 18px;
+            font-size: 1.35rem;
+            color: var(--tcm-brand-green);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tcm-section-title i {
+            font-size: 1.2rem;
+        }
+
+        .tcm-info-card {
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: var(--tcm-shadow-soft);
+            margin-bottom: 18px;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tcm-info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 45px rgba(46, 125, 50, 0.12);
+        }
+
+        .tcm-card-header {
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            cursor: pointer;
+        }
+
+        .tcm-card-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .tcm-card-title i {
+            font-size: 1.5rem;
+            color: var(--tcm-brand-green);
+        }
+
+        .tcm-card-title h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--tcm-text-main);
+            letter-spacing: 0.02em;
+        }
+
+        .tcm-toggle-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 999px;
+            background: rgba(46, 125, 50, 0.12);
+            color: var(--tcm-brand-green);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .tcm-toggle-button i {
+            transition: transform 0.2s ease;
+        }
+
+        .tcm-card-body {
+            padding: 0 22px 26px;
+            display: none;
+        }
+
+        .tcm-info-card.is-open .tcm-card-body {
+            display: grid;
+            gap: 18px;
+        }
+
+        .tcm-info-card.is-open .tcm-toggle-button i {
+            transform: rotate(180deg);
+        }
+
+        .tcm-card-section {
+            display: grid;
+            gap: 8px;
+        }
+
+        .tcm-card-section h3 {
+            margin: 0;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--tcm-text-main);
+        }
+
+        .tcm-card-section h3 i {
+            font-size: 0.95rem;
+            color: var(--tcm-accent-green);
+        }
+
+        .tcm-card-section p {
+            margin: 0;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-grid-two {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .tcm-list {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-list li + li {
+            margin-top: 6px;
+        }
+
+        .tcm-steps {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-steps li + li {
+            margin-top: 6px;
+        }
+
+        .tcm-tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .tcm-tip-card {
+            background: linear-gradient(135deg, rgba(102, 187, 106, 0.12), rgba(46, 125, 50, 0.08));
+            border: 1px solid rgba(46, 125, 50, 0.18);
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            display: grid;
+            gap: 10px;
+        }
+
+        .tcm-tip-card i {
+            font-size: 1.4rem;
+            color: var(--tcm-brand-green);
+        }
+
+        .tcm-tip-card h3 {
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .tcm-tip-card p {
+            margin: 0;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-warning {
+            margin-top: 26px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: rgba(237, 108, 71, 0.12);
+            border: 1px solid rgba(211, 47, 47, 0.18);
+            color: #b71c1c;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tcm-warning i {
+            font-size: 1.2rem;
+        }
+
+        .tcm-footer-note {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--tcm-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .tcm-hero {
+                padding: 26px 22px 28px;
+            }
+
+            .tcm-card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .tcm-toggle-button {
+                align-self: flex-end;
+            }
+        }
+
+        /* 控制面板样式 */
+        .tcm-example-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--tcm-brand-green);
+            border-radius: 20px;
+            background: transparent;
+            color: var(--tcm-brand-green);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .tcm-example-btn:hover {
+            background: var(--tcm-brand-green);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .tcm-example-btn--primary {
+            background: var(--tcm-brand-green);
+            color: white;
+        }
+
+        .tcm-example-btn--primary:hover {
+            background: var(--tcm-accent-green);
+        }
+
+        .tcm-apply-btn {
+            padding: 10px 20px;
+            background: var(--tcm-brand-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tcm-apply-btn:hover {
+            background: var(--tcm-accent-green);
+            transform: translateY(-1px);
+        }
+
+        .tcm-format-btn {
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--tcm-brand-green);
+            border: 2px solid var(--tcm-brand-green);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tcm-format-btn:hover {
+            background: var(--tcm-brand-green);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* 标签页样式 */
+        .tcm-tab-btn {
+            padding: 10px 20px;
+            border: none;
+            border-bottom: 3px solid transparent;
+            background: transparent;
+            color: var(--tcm-text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .tcm-tab-btn:hover {
+            color: var(--tcm-brand-green);
+        }
+
+        .tcm-tab-btn--active {
+            color: var(--tcm-brand-green);
+            border-bottom-color: var(--tcm-brand-green);
+        }
+
+        .tcm-panel {
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="tcm-plan-demo">
+        <!-- 控制面板 -->
+        <div class="tcm-control-panel" style="margin-bottom: 30px; padding: 20px; background: #ffffff; border-radius: 16px; box-shadow: var(--tcm-shadow-soft);">
+            <h3 style="margin: 0 0 16px 0; color: var(--tcm-brand-green); display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-cogs"></i> 中医调理方案生成测试
+            </h3>
+            
+            <!-- 标签页 -->
+            <div style="display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #f0f0f0;">
+                <button id="heroTab" onclick="switchTab('hero')" class="tcm-tab-btn tcm-tab-btn--active">大体状况模块</button>
+                <button id="prescriptionTab" onclick="switchTab('prescription')" class="tcm-tab-btn">中药调理模块</button>
+            </div>
+            
+            <!-- Hero 模块控制 -->
+            <div id="heroPanel" class="tcm-panel">
+                <!-- AI 生成区域 -->
+                <div style="background: #f8fdf8; border: 2px dashed #66bb6a; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 12px 0; color: var(--tcm-brand-green); display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-robot"></i> AI 生成大体状况
+                    </h4>
+                    <div style="display: grid; gap: 12px;">
+                        <label style="color: var(--tcm-text-main); font-weight: 600;">
+                            描述患者症状：
+                        </label>
+                        <textarea id="heroPromptInput" placeholder="例如：患者失眠多梦，心悸不安，手足心热，口干咽燥，腰膝酸软，舌红少苔，脉细数" style="min-height: 80px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <button onclick="generateHeroWithAI()" class="tcm-apply-btn" style="background: linear-gradient(135deg, #66bb6a, #4caf50);">
+                                <i class="fas fa-magic"></i> AI 生成 JSON
+                            </button>
+                            <div id="heroGenerating" style="display: none; color: #666; font-size: 14px;">
+                                <i class="fas fa-spinner fa-spin"></i> 生成中...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; gap: 12px;">
+                    <label style="color: var(--tcm-text-main); font-weight: 600;">
+                        大体状况 JSON 数据：
+                    </label>
+                    <textarea id="heroJsonInput" style="min-height: 180px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-family: 'Courier New', monospace; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
+                    <div style="display: flex; gap: 12px;">
+                        <button onclick="applyHeroData()" class="tcm-apply-btn">应用到大体状况</button>
+                        <button onclick="formatHeroJSON()" class="tcm-format-btn">格式化</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Prescription 模块控制 -->
+            <div id="prescriptionPanel" class="tcm-panel" style="display: none;">
+                <!-- AI 生成区域 -->
+                <div style="background: #f8fdf8; border: 2px dashed #66bb6a; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                    <h4 style="margin: 0 0 12px 0; color: var(--tcm-brand-green); display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-robot"></i> AI 生成中药调理方案
+                    </h4>
+                    <div style="display: grid; gap: 12px;">
+                        <label style="color: var(--tcm-text-main); font-weight: 600;">
+                            描述证型或症状：
+                        </label>
+                        <textarea id="prescriptionPromptInput" placeholder="例如：肝郁气滞型失眠，需要疏肝解郁，养心安神的调理方案" style="min-height: 80px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <button onclick="generatePrescriptionWithAI()" class="tcm-apply-btn" style="background: linear-gradient(135deg, #66bb6a, #4caf50);">
+                                <i class="fas fa-magic"></i> AI 生成 JSON
+                            </button>
+                            <div id="prescriptionGenerating" style="display: none; color: #666; font-size: 14px;">
+                                <i class="fas fa-spinner fa-spin"></i> 生成中...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; gap: 12px;">
+                    <label style="color: var(--tcm-text-main); font-weight: 600;">
+                        中药调理方案 JSON 数据：
+                    </label>
+                    <textarea id="prescriptionJsonInput" style="min-height: 250px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-family: 'Courier New', monospace; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
+                    <div style="display: flex; gap: 12px;">
+                        <button onclick="applyPrescriptionData()" class="tcm-apply-btn">应用到中药调理</button>
+                        <button onclick="formatPrescriptionJSON()" class="tcm-format-btn">格式化</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tcm-plan">
+            <!-- 大体诊断 -->
+            <header class="tcm-hero" id="tcm-hero">
+                <div class="tcm-hero-content">
+                    <div class="tcm-hero-title">
+                        <h1><i class="fas fa-leaf"></i> 大体状况（例子心肾不交 · 阴虚火旺）</h1>
+                    </div>
+                    <!-- 症状的tag -->
+                    <div class="tcm-badge-list">
+                        <span class="tcm-badge"><i class="fas fa-moon"></i> 失眠</span>
+                        <span class="tcm-badge"><i class="fas fa-cloud-moon"></i> 多梦易醒</span>
+                        <span class="tcm-badge"><i class="fas fa-heart"></i> 心悸</span>
+                        <span class="tcm-badge"><i class="fas fa-fire"></i> 手足心热</span>
+                    </div>
+                    <div class="tcm-hero-summary">
+                        <div class="tcm-summary-row">
+                            <div class="tcm-summary-box">
+                                <span class="tcm-label">调理目标</span>
+                                <span class="tcm-value">滋阴潜阳 · 宁心安神</span>
+                            </div>
+                            <div class="tcm-summary-box">
+                                <span class="tcm-label">体质特点</span>
+                                <span class="tcm-value">阴虚火旺 · 心肾不交</span>
+                            </div>
+                            <div class="tcm-summary-box">
+                                <span class="tcm-label">推荐节奏</span>
+                                <span class="tcm-value">中药调理 + 生活养护</span>
+                            </div>
+                        </div>
+                        <div class="tcm-curve-note">
+                            <strong>温馨提示：</strong> 建议在专业中医师指导下辨证施治，可结合体质评估和舌脉表现进行个性化微调。
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section id="prescription">
+                <h2 class="tcm-section-title"><i class="fas fa-prescription-bottle-alt"></i> 中药调理方案</h2>
+
+                <article class="tcm-info-card is-open" data-card>
+                    <div class="tcm-card-header" role="button" tabindex="0">
+                        <div class="tcm-card-title">
+                            <i class="fas fa-seedling"></i>
+                            <h2>六味地黄汤加味</h2>
+                        </div>
+                        <button class="tcm-toggle-button" aria-expanded="true" type="button">
+                            <span class="tcm-toggle-text">收起</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="tcm-card-body">
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-list-ul"></i> 组成与剂量</h3>
+                            <ul class="tcm-list">
+                                <li>熟地黄 9克 · 山茱萸 9克 · 山药 15克</li>
+                                <li>茯苓 9克 · 牡丹皮 9克 · 泽泻 9克</li>
+                                <li>炒枣仁 15克 · 远志 7.5克</li>
+                            </ul>
+                        </div>
+                        <div class="tcm-grid-two">
+                            <div class="tcm-card-section">
+                                <h3><i class="fas fa-stethoscope"></i> 功能主治</h3>
+                                <p>滋阴补肾、交通心肾，重点缓解阴虚火旺导致的心烦、失眠、腰膝酸软等表现。</p>
+                            </div>
+                            <div class="tcm-card-section">
+                                <h3><i class="fas fa-calendar-day"></i> 服用建议</h3>
+                                <p>每日一剂，水煎两次合并，分早晚温服。建议持续调理 2~4 周后复评。</p>
+                            </div>
+                        </div>
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-lightbulb"></i> 调整方向</h3>
+                            <p>若出现口干咽燥可酌加麦冬、生地；若失眠偏重，可加夜交藤、柏子仁加强安神。</p>
+                        </div>
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-exclamation-triangle"></i> 注意事项</h3>
+                            <p>服药期间避免辛辣、烧烤及过量油腻食物，留意大便是否偏稀，必要时请医生调整方剂。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tcm-info-card is-open" data-card>
+                    <div class="tcm-card-header" role="button" tabindex="0">
+                        <div class="tcm-card-title">
+                            <i class="fas fa-bowl-food"></i>
+                            <h2>酸枣仁滋养粥</h2>
+                        </div>
+                        <button class="tcm-toggle-button" aria-expanded="true" type="button">
+                            <span class="tcm-toggle-text">收起</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="tcm-card-body">
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-list-ul"></i> 食材搭配</h3>
+                            <ul class="tcm-list">
+                                <li>酸枣仁 30克（微炒后研碎）</li>
+                                <li>大米 100克 · 可加入百合 15克</li>
+                                <li>生地汁 20毫升（或用鲜地黄榨汁）</li>
+                            </ul>
+                        </div>
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-utensils"></i> 烹制步骤</h3>
+                            <ol class="tcm-steps">
+                                <li>酸枣仁加温水浸泡 30 分钟取汁，残渣备用。</li>
+                                <li>用酸枣仁汁煮米成粥，八成熟时倒入生地汁，小火再煨 5 分钟。</li>
+                                <li>依据口味加入少量冰糖或枸杞，晚餐或睡前 1 小时食用。</li>
+                            </ol>
+                        </div>
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-mortar-pestle"></i> 适宜人群</h3>
+                            <p>睡眠浅、易醒、夜间心烦口干者尤宜。可作为日常保健，每周 3~4 次，连用 4 周观察改善。</p>
+                        </div>
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-circle-info"></i> 温馨提示</h3>
+                            <p>孕期或脾胃虚弱、大便溏稀者需酌情减量；若出现湿重或食欲下降，可暂停食用并咨询医师。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tcm-info-card is-open" data-card>
+                    <div class="tcm-card-header" role="button" tabindex="0">
+                        <div class="tcm-card-title">
+                            <i class="fas fa-yin-yang"></i>
+                            <h2>生龙牡安神方</h2>
+                        </div>
+                        <button class="tcm-toggle-button" aria-expanded="true" type="button">
+                            <span class="tcm-toggle-text">收起</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="tcm-card-body">
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-list-ul"></i> 组成</h3>
+                            <ul class="tcm-list">
+                                <li>生龙骨 9克 · 生牡蛎 9克（先煎）</li>
+                                <li>炒枣仁 15克 · 远志 7.5克 · 茯神 4.5克</li>
+                                <li>炙甘草 3克 · 五味子 4.5克</li>
+                            </ul>
+                        </div>
+                        <div class="tcm-grid-two">
+                            <div class="tcm-card-section">
+                                <h3><i class="fas fa-brain"></i> 调理思路</h3>
+                                <p>以重镇安神、交通心肾为主，适用于惊悸不安、心胆气虚、睡眠浅而多梦的情况。</p>
+                            </div>
+                            <div class="tcm-card-section">
+                                <h3><i class="fas fa-clipboard-check"></i> 用法</h3>
+                                <p>每日一剂，先煎龙骨、牡蛎 20 分钟，再入余药同煎，分早晚温服。连服 7~10 剂评估效果。</p>
+                            </div>
+                        </div>
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-eye"></i> 观察重点</h3>
+                            <p>关注睡眠深度、夜间心悸频率及情绪波动。如有胃部不适，可加陈皮、半夏和姜汁调和。</p>
+                        </div>
+                        <div class="tcm-card-section">
+                            <h3><i class="fas fa-exclamation-circle"></i> 避免事项</h3>
+                            <p>不宜与含高钙的保健品同服；高血压、甲状腺功能异常者请先遵医嘱再行调理。</p>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section id="suggestion">
+                <h2 class="tcm-section-title"><i class="fas fa-seedling"></i> 日常生活调养</h2>
+                <div class="tcm-tips-grid">
+                    <div class="tcm-tip-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>饮食节奏</h3>
+                        <p>主食搭配莲子、山药、银耳，补充优质蛋白（如鱼肉、豆制品）。晚餐宜清淡，睡前 2 小时不进食。</p>
+                    </div>
+                    <div class="tcm-tip-card">
+                        <i class="fas fa-bed"></i>
+                        <h3>睡眠仪式</h3>
+                        <p>坚持 23:00 前入睡，睡前温水泡脚 15 分钟，可加入艾叶或薰衣草。放下电子产品，做 5 分钟深呼吸。</p>
+                    </div>
+                    <div class="tcm-tip-card">
+                        <i class="fas fa-face-smile"></i>
+                        <h3>情志调护</h3>
+                        <p>尝试冥想、瑜伽或太极，每日记录情绪变化。建议适度户外日光浴，调和心肾。</p>
+                    </div>
+                    <div class="tcm-tip-card">
+                        <i class="fas fa-person-running"></i>
+                        <h3>体质管理</h3>
+                        <p>每周 3~4 次中等强度运动（如快走、八段锦），避免熬夜与过度劳累，保持睡眠环境安静舒适。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="tcm-section-title"><i class="fas fa-notes-medical"></i> 复诊与安全提示</h2>
+                <div class="tcm-warning">
+                    <i class="fas fa-info-circle"></i>
+                    调理过程中如出现持续高热、胸闷或情绪异常波动，请立即就医；慢性基础疾病患者需同步告知主诊医师。
+                </div>
+            </section>
+        </div>
+
+        <p class="tcm-footer-note">本页面为中医模型建议的可视化呈现，旨在辅助理解，不替代专业诊疗。</p>
+    </div>
+
+    <script>
+        // TCM Hero 模块生成函数
+        function generateTcmHero(data) {
+            const symptomsHTML = data.symptoms.map(symptom => 
+                `<span class="tcm-badge"><i class="${symptom.icon}"></i> ${symptom.text}</span>`
+            ).join('\n                        ');
+
+            return `
+                <div class="tcm-hero-content">
+                    <div class="tcm-hero-title">
+                        <h1><i class="${data.title.icon}"></i> ${data.title.text}</h1>
+                    </div>
+                    <!-- 症状的tag -->
+                    <div class="tcm-badge-list">
+                        ${symptomsHTML}
+                    </div>
+                    <div class="tcm-hero-summary">
+                        <div class="tcm-summary-row">
+                            <div class="tcm-summary-box">
+                                <span class="tcm-label">调理目标</span>
+                                <span class="tcm-value">${data.summary.treatmentGoal}</span>
+                            </div>
+                            <div class="tcm-summary-box">
+                                <span class="tcm-label">体质特点</span>
+                                <span class="tcm-value">${data.summary.constitution}</span>
+                            </div>
+                            <div class="tcm-summary-box">
+                                <span class="tcm-label">推荐节奏</span>
+                                <span class="tcm-value">${data.summary.recommendation}</span>
+                            </div>
+                        </div>
+                        <div class="tcm-curve-note">
+                            <strong>温馨提示：</strong> ${data.note}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 更新 TCM Hero 模块内容
+        function updateTcmHero(data) {
+            const heroElement = document.getElementById('tcm-hero');
+            if (heroElement) {
+                heroElement.innerHTML = generateTcmHero(data);
+            }
+        }
+
+        // Prescription 模块生成函数
+        function generatePrescriptionSection(section) {
+            const { title, icon, type, content } = section;
+            
+            if (type === 'list') {
+                const listItems = content.map(item => `<li>${item}</li>`).join('\n                                ');
+                return `
+                        <div class="tcm-card-section">
+                            <h3><i class="${icon}"></i> ${title}</h3>
+                            <ul class="tcm-list">
+                                ${listItems}
+                            </ul>
+                        </div>`;
+            } else if (type === 'steps') {
+                const stepItems = content.map(item => `<li>${item}</li>`).join('\n                                ');
+                return `
+                        <div class="tcm-card-section">
+                            <h3><i class="${icon}"></i> ${title}</h3>
+                            <ol class="tcm-steps">
+                                ${stepItems}
+                            </ol>
+                        </div>`;
+            } else {
+                return `
+                        <div class="tcm-card-section">
+                            <h3><i class="${icon}"></i> ${title}</h3>
+                            <p>${content}</p>
+                        </div>`;
+            }
+        }
+
+        function generatePrescriptionCard(prescription) {
+            const { name, icon, sections } = prescription;
+            
+            // 分离第一个section和其他sections
+            const firstSection = sections[0];
+            const remainingSections = sections.slice(1);
+            
+            // 检查是否有可以放在grid-two中的section
+            let gridTwoSections = [];
+            let singleSections = [];
+            
+            remainingSections.forEach(section => {
+                if (section.type === 'text' && gridTwoSections.length < 2) {
+                    gridTwoSections.push(section);
+                } else {
+                    singleSections.push(section);
+                }
+            });
+            
+            let sectionsHTML = generatePrescriptionSection(firstSection);
+            
+            // 添加 grid-two 部分
+            if (gridTwoSections.length > 0) {
+                sectionsHTML += `
+                        <div class="tcm-grid-two">
+                            ${gridTwoSections.map(section => generatePrescriptionSection(section)).join('')}
+                        </div>`;
+            }
+            
+            // 添加其他单独的sections
+            sectionsHTML += singleSections.map(section => generatePrescriptionSection(section)).join('');
+
+            return `
+                <article class="tcm-info-card is-open" data-card>
+                    <div class="tcm-card-header" role="button" tabindex="0">
+                        <div class="tcm-card-title">
+                            <i class="${icon}"></i>
+                            <h2>${name}</h2>
+                        </div>
+                        <button class="tcm-toggle-button" aria-expanded="true" type="button">
+                            <span class="tcm-toggle-text">收起</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="tcm-card-body">
+                        ${sectionsHTML}
+                    </div>
+                </article>`;
+        }
+
+        function generatePrescription(data) {
+            const { sectionTitle, prescriptions } = data;
+            const prescriptionCards = prescriptions.map(prescription => 
+                generatePrescriptionCard(prescription)
+            ).join('\n\n                ');
+
+            return `
+                <h2 class="tcm-section-title"><i class="${sectionTitle.icon}"></i> ${sectionTitle.text}</h2>
+
+                ${prescriptionCards}
+            `;
+        }
+
+        // 更新 Prescription 模块内容
+        function updatePrescription(data) {
+            const prescriptionElement = document.getElementById('prescription');
+            if (prescriptionElement) {
+                prescriptionElement.innerHTML = generatePrescription(data);
+                
+                // 重新绑定卡片折叠功能
+                prescriptionElement.querySelectorAll('[data-card]').forEach(card => {
+                    const header = card.querySelector('.tcm-card-header');
+                    const button = card.querySelector('.tcm-toggle-button');
+                    const text = card.querySelector('.tcm-toggle-text');
+
+                    const toggle = () => {
+                        const isOpen = card.classList.toggle('is-open');
+                        button.setAttribute('aria-expanded', String(isOpen));
+                        text.textContent = isOpen ? '收起' : '展开';
+                    };
+
+                    header.addEventListener('click', toggle);
+                    header.addEventListener('keypress', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            toggle();
+                        }
+                    });
+                });
+            }
+        }
+
+        // 示例数据（可以从后端 API 获取）
+        const exampleData = {
+            "title": {
+                "icon": "fas fa-leaf",
+                "text": "大体状况（例子心肾不交 · 阴虚火旺）"
+            },
+            "symptoms": [
+                {
+                    "icon": "fas fa-moon",
+                    "text": "失眠"
+                },
+                {
+                    "icon": "fas fa-cloud-moon", 
+                    "text": "多梦易醒"
+                },
+                {
+                    "icon": "fas fa-heart",
+                    "text": "心悸"
+                },
+                {
+                    "icon": "fas fa-fire",
+                    "text": "手足心热"
+                }
+            ],
+            "summary": {
+                "treatmentGoal": "滋阴潜阳 · 宁心安神",
+                "constitution": "阴虚火旺 · 心肾不交", 
+                "recommendation": "中药调理 + 生活养护"
+            },
+            "note": "建议在专业中医师指导下辨证施治，可结合体质评估和舌脉表现进行个性化微调。"
+        };
+
+        // 多种病症示例数据
+        const tcmExamples = {
+            "原始示例": exampleData,
+            "肝郁气滞": {
+                "title": {
+                    "icon": "fas fa-leaf",
+                    "text": "大体状况（肝郁气滞 · 情志不畅）"
+                },
+                "symptoms": [
+                    {
+                        "icon": "fas fa-sad-tear",
+                        "text": "情绪低落"
+                    },
+                    {
+                        "icon": "fas fa-stomach",
+                        "text": "胸胁胀满"
+                    },
+                    {
+                        "icon": "fas fa-angry",
+                        "text": "易怒烦躁"
+                    },
+                    {
+                        "icon": "fas fa-headache",
+                        "text": "偏头痛"
+                    }
+                ],
+                "summary": {
+                    "treatmentGoal": "疏肝理气 · 调和情志",
+                    "constitution": "肝郁气滞 · 情志不畅",
+                    "recommendation": "中药疏肝 + 情志调理"
+                },
+                "note": "肝主疏泄，情志调理需配合日常生活节律调整，建议适度运动和音乐疗法。"
+            },
+            "脾胃虚弱": {
+                "title": {
+                    "icon": "fas fa-leaf", 
+                    "text": "大体状况（脾胃虚弱 · 消化不良）"
+                },
+                "symptoms": [
+                    {
+                        "icon": "fas fa-stomach",
+                        "text": "食欲不振"
+                    },
+                    {
+                        "icon": "fas fa-tired",
+                        "text": "疲倦乏力"
+                    },
+                    {
+                        "icon": "fas fa-dizzy",
+                        "text": "腹胀腹泻"
+                    },
+                    {
+                        "icon": "fas fa-face-frown",
+                        "text": "面色萎黄"
+                    }
+                ],
+                "summary": {
+                    "treatmentGoal": "健脾益气 · 和胃助运",
+                    "constitution": "脾胃虚弱 · 运化失常",
+                    "recommendation": "温补脾胃 + 饮食调养"
+                },
+                "note": "脾胃为后天之本，需要规律饮食，忌生冷油腻，可配合适量运动增强脾胃功能。"
+            },
+            "肾阳虚": {
+                "title": {
+                    "icon": "fas fa-leaf",
+                    "text": "大体状况（肾阳虚 · 命门火衰）"
+                },
+                "symptoms": [
+                    {
+                        "icon": "fas fa-snowflake",
+                        "text": "畏寒怕冷"
+                    },
+                    {
+                        "icon": "fas fa-tired",
+                        "text": "精神不振"
+                    },
+                    {
+                        "icon": "fas fa-back",
+                        "text": "腰膝酸软"
+                    },
+                    {
+                        "icon": "fas fa-tint",
+                        "text": "夜尿频多"
+                    }
+                ],
+                "summary": {
+                    "treatmentGoal": "温补肾阳 · 固本培元",
+                    "constitution": "肾阳虚衰 · 命门火衰",
+                    "recommendation": "温阳补肾 + 起居调养"
+                },
+                "note": "肾为先天之本，阳虚体质需避免熬夜劳累，适当进补温阳食物，配合适度的有氧运动。"
+            },
+            "血瘀体质": {
+                "title": {
+                    "icon": "fas fa-leaf",
+                    "text": "大体状况（血瘀体质 · 瘀血阻络）"
+                },
+                "symptoms": [
+                    {
+                        "icon": "fas fa-tint",
+                        "text": "面色晦暗"
+                    },
+                    {
+                        "icon": "fas fa-bolt",
+                        "text": "刺痛固定"
+                    },
+                    {
+                        "icon": "fas fa-circle",
+                        "text": "舌质紫暗"
+                    },
+                    {
+                        "icon": "fas fa-hand-dots",
+                        "text": "肌肤甲错"
+                    }
+                ],
+                "summary": {
+                    "treatmentGoal": "活血化瘀 · 通络止痛",
+                    "constitution": "血瘀内阻 · 经络不通",
+                    "recommendation": "活血化瘀 + 运动调理"
+                },
+                "note": "血瘀体质宜动不宜静，适当运动促进血液循环，避免久坐久立，可配合按摩推拿。"
+            }
+        };
+
+        // Prescription 示例数据
+        const prescriptionExamples = {
+            "原始示例": {
+                "sectionTitle": {
+                    "icon": "fas fa-prescription-bottle-alt",
+                    "text": "中药调理方案"
+                },
+                "prescriptions": [
+                    {
+                        "name": "六味地黄汤加味",
+                        "icon": "fas fa-seedling",
+                        "sections": [
+                            {
+                                "title": "组成与剂量",
+                                "icon": "fas fa-list-ul",
+                                "type": "list",
+                                "content": [
+                                    "熟地黄 9克 · 山茱萸 9克 · 山药 15克",
+                                    "茯苓 9克 · 牡丹皮 9克 · 泽泻 9克",
+                                    "炒枣仁 15克 · 远志 7.5克"
+                                ]
+                            },
+                            {
+                                "title": "功能主治",
+                                "icon": "fas fa-stethoscope",
+                                "type": "text",
+                                "content": "滋阴补肾、交通心肾，重点缓解阴虚火旺导致的心烦、失眠、腰膝酸软等表现。"
+                            },
+                            {
+                                "title": "服用建议",
+                                "icon": "fas fa-calendar-day",
+                                "type": "text",
+                                "content": "每日一剂，水煎两次合并，分早晚温服。建议持续调理 2~4 周后复评。"
+                            },
+                            {
+                                "title": "调整方向",
+                                "icon": "fas fa-lightbulb",
+                                "type": "text",
+                                "content": "若出现口干咽燥可酌加麦冬、生地；若失眠偏重，可加夜交藤、柏子仁加强安神。"
+                            },
+                            {
+                                "title": "注意事项",
+                                "icon": "fas fa-exclamation-triangle",
+                                "type": "text",
+                                "content": "服药期间避免辛辣、烧烤及过量油腻食物，留意大便是否偏稀，必要时请医生调整方剂。"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "肝郁气滞": {
+                "sectionTitle": {
+                    "icon": "fas fa-prescription-bottle-alt",
+                    "text": "中药调理方案"
+                },
+                "prescriptions": [
+                    {
+                        "name": "逍遥散加减",
+                        "icon": "fas fa-seedling",
+                        "sections": [
+                            {
+                                "title": "组成与剂量",
+                                "icon": "fas fa-list-ul",
+                                "type": "list",
+                                "content": [
+                                    "柴胡 10克 · 当归 12克 · 白芍 12克",
+                                    "白术 10克 · 茯苓 15克 · 炙甘草 6克",
+                                    "薄荷 3克 · 生姜 3片"
+                                ]
+                            },
+                            {
+                                "title": "功能主治",
+                                "icon": "fas fa-stethoscope",
+                                "type": "text",
+                                "content": "疏肝解郁，健脾和胃。主治肝郁脾虚证，胸胁胀痛，头痛目眩，口燥咽干。"
+                            },
+                            {
+                                "title": "服用建议",
+                                "icon": "fas fa-calendar-day",
+                                "type": "text",
+                                "content": "每日一剂，水煎服，分早晚两次温服。连服 2~3 周后观察疗效。"
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // AI 数据适配函数
+        function adaptHeroData(aiData) {
+            return {
+                title: {
+                    icon: aiData.icon || "fas fa-leaf",
+                    text: aiData.syndrome || "未知证型"
+                },
+                symptoms: Array.isArray(aiData.symptoms)
+                    ? aiData.symptoms.map(s => ({
+                        icon: "fas fa-leaf", // 可根据内容自定义
+                        text: s
+                    }))
+                    : [],
+                summary: {
+                    treatmentGoal: aiData.description || "",
+                    constitution: aiData.patientName || "",
+                    recommendation: (aiData.pulse || "") + (aiData.tongue ? " · " + aiData.tongue : "")
+                },
+                note: aiData.description || ""
+            };
+        }
+
+        function adaptPrescriptionData(aiData) {
+            // sectionTitle 兼容字符串和对象
+            let sectionTitleObj = {};
+            if (typeof aiData.sectionTitle === 'string') {
+                sectionTitleObj = {
+                    icon: "fas fa-prescription-bottle-alt",
+                    text: aiData.sectionTitle
+                };
+            } else if (aiData.sectionTitle && typeof aiData.sectionTitle === 'object') {
+                sectionTitleObj = {
+                    icon: aiData.sectionTitle.icon || "fas fa-prescription-bottle-alt",
+                    text: aiData.sectionTitle.text || "中药调理方案"
+                };
+            } else {
+                sectionTitleObj = {
+                    icon: "fas fa-prescription-bottle-alt",
+                    text: "中药调理方案"
+                };
+            }
+
+            // 兼容 AI 结构（第一种结构）转换为前端预期结构（第二种结构）
+            let prescriptions = [];
+            if (Array.isArray(aiData.prescriptions)) {
+                prescriptions = aiData.prescriptions.map((p, idx) => {
+                    // AI 结构可能用 title 或 name
+                    const name = p.name || p.title || `方剂${idx+1}`;
+                    const icon = p.icon || (idx === 0 ? "fas fa-seedling" : idx === 1 ? "fas fa-utensils" : "fas fa-spa");
+                    let sections = [];
+                    // AI 结构可能用 sections 或 items 或 content
+                    if (Array.isArray(p.sections)) {
+                        sections = p.sections.map((s, sidx) => {
+                            // section 兼容 title, icon, type, content/items
+                            let type = s.type;
+                            let content = s.content;
+                            // AI 结构可能用 items 字段
+                            if (s.items) {
+                                content = s.items;
+                                // 自动推断 type
+                                if (!type) {
+                                    if (Array.isArray(s.items)) {
+                                        type = s.items.length > 2 ? "list" : "steps";
+                                    } else {
+                                        type = "text";
+                                    }
+                                }
+                            } else if (!type) {
+                                // 没有 items，只有 content
+                                if (Array.isArray(content)) {
+                                    type = content.length > 2 ? "list" : "steps";
+                                } else {
+                                    type = "text";
+                                }
+                            }
+                            // 保证 content 类型
+                            if (type === "list" || type === "steps") {
+                                if (!Array.isArray(content)) {
+                                    content = content ? [content] : [];
+                                }
+                            } else {
+                                if (Array.isArray(content)) {
+                                    content = content.join("；");
+                                }
+                            }
+                            return {
+                                title: s.title || "",
+                                icon: s.icon || (type === "list" ? "fas fa-list-ul" : type === "steps" ? "fas fa-calendar-day" : "fas fa-stethoscope"),
+                                type: type || "text",
+                                content: content || (type === "list" || type === "steps" ? [] : "")
+                            };
+                        });
+                    } else if (Array.isArray(p.items)) {
+                        // AI 结构 prescriptions.items 直接转为一个 section
+                        sections = [{
+                            title: "组成与剂量",
+                            icon: "fas fa-list-ul",
+                            type: "list",
+                            content: p.items
+                        }];
+                    } else if (p.content) {
+                        // AI 结构 prescriptions.content 直接转为一个 section
+                        sections = [{
+                            title: "内容",
+                            icon: "fas fa-stethoscope",
+                            type: "text",
+                            content: p.content
+                        }];
+                    }
+                    return {
+                        name,
+                        icon,
+                        sections
+                    };
+                });
+            }
+            return {
+                sectionTitle: sectionTitleObj,
+                prescriptions
+            };
+        }
+
+        // TCM Hero 模块初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化Hero JSON输入框
+            const heroJsonInput = document.getElementById('heroJsonInput');
+            if (heroJsonInput) {
+                heroJsonInput.value = JSON.stringify(exampleData, null, 2);
+            }
+            
+            // 初始化Prescription JSON输入框
+            const prescriptionJsonInput = document.getElementById('prescriptionJsonInput');
+            if (prescriptionJsonInput) {
+                prescriptionJsonInput.value = JSON.stringify(prescriptionExamples['原始示例'], null, 2);
+            }
+        });
+
+        // 卡片折叠功能
+        document.querySelectorAll('[data-card]').forEach(card => {
+            const header = card.querySelector('.tcm-card-header');
+            const button = card.querySelector('.tcm-toggle-button');
+            const text = card.querySelector('.tcm-toggle-text');
+
+            const toggle = () => {
+                const isOpen = card.classList.toggle('is-open');
+                button.setAttribute('aria-expanded', String(isOpen));
+                text.textContent = isOpen ? '收起' : '展开';
+            };
+
+            header.addEventListener('click', toggle);
+            header.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    toggle();
+                }
+            });
+        });
+
+        // AI 生成功能
+        const API_BASE_URL = 'http://localhost:5000';
+
+        async function generateHeroWithAI() {
+            const promptInput = document.getElementById('heroPromptInput');
+            const loadingDiv = document.getElementById('heroGenerating');
+            const jsonInput = document.getElementById('heroJsonInput');
+            
+            const prompt = promptInput.value.trim();
+            if (!prompt) {
+                alert('请输入症状描述');
+                return;
+            }
+
+            // 显示加载状态
+            loadingDiv.style.display = 'block';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/generate-hero`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+
+                console.log('DEBUG: start get response.json')
+                const result = await response.json();
+
+                if (result.success) {
+                    console.log('DEBUG: result success')
+                    // 容错：如果AI返回的是字符串而不是对象，尝试解析
+                    let aiData = result.data;
+                    // 字段适配（如有需要可补充）
+                    jsonInput.value = JSON.stringify(aiData, null, 2);
+                    console.log('DEBUG: start apply hero data')
+                    applyHeroData();
+                    alert('AI 生成成功并已应用到页面！');
+                } else {
+                    console.error('生成失败:', result);
+                    alert('生成失败: ' + (result.error || '未知错误') + '\\n原始响应：' + (result.raw_response || ''));
+                }
+
+            } catch (error) {
+                console.error('请求失败:', error);
+                alert('请求失败，请检查后端服务是否运行 (http://localhost:5000)');
+            } finally {
+                // 隐藏加载状态
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        async function generatePrescriptionWithAI() {
+            const promptInput = document.getElementById('prescriptionPromptInput');
+            const loadingDiv = document.getElementById('prescriptionGenerating');
+            const jsonInput = document.getElementById('prescriptionJsonInput');
+            
+            const prompt = promptInput.value.trim();
+            if (!prompt) {
+                alert('请输入证型或症状描述');
+                return;
+            }
+
+            // 显示加载状态
+            loadingDiv.style.display = 'block';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/generate-prescription`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    // 将生成的 JSON 填入输入框
+                    jsonInput.value = JSON.stringify(result.data, null, 2);
+                    console.log('DEBUG: generatePrescriptionWithAI - json stringify success')
+                    
+                    // 自动应用到页面
+                    applyPrescriptionData();
+                    
+                    alert('AI 生成成功并已应用到页面！');
+                } else {
+                    console.error('生成失败:', result);
+                    alert('生成失败: ' + (result.error || '未知错误'));
+                }
+            } catch (error) {
+                console.error('请求失败:', error);
+                alert('请求失败，请检查后端服务是否运行 (http://localhost:5000)');
+            } finally {
+                // 隐藏加载状态
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        function applyHeroData() {
+            const jsonInput = document.getElementById('heroJsonInput');
+            if (!jsonInput) return;
+            try {
+                let data = jsonInput.value;
+                if (typeof data === 'string') {
+                    try {
+                        data = JSON.parse(data);
+                    } catch (e) {
+                        try {
+                            data = JSON.parse(data.trim());
+                        } catch (e2) {
+                            alert('JSON 格式错误，请检查语法：\n' + e2.message + '\n原始内容：' + jsonInput.value);
+                            return;
+                        }
+                    }
+                }
+                // 适配 AI 数据结构
+                const adapted = adaptHeroData(data);
+                updateTcmHero(adapted);
+                alert('大体状况数据应用成功！');
+            } catch (error) {
+                alert('JSON 格式错误，请检查语法：\n' + error.message + '\n原始内容：' + jsonInput.value);
+            }
+        }
+
+        function formatHeroJSON() {
+            const jsonInput = document.getElementById('heroJsonInput');
+            if (!jsonInput) return;
+            
+            try {
+                const data = JSON.parse(jsonInput.value);
+                jsonInput.value = JSON.stringify(data, null, 2);
+                alert('JSON 格式化完成！');
+            } catch (error) {
+                alert('JSON 格式错误，无法格式化：\n' + error.message);
+            }
+        }
+
+        // Prescription 模块功能
+        function loadPrescriptionExample(exampleName) {
+            if (prescriptionExamples[exampleName]) {
+                const data = prescriptionExamples[exampleName];
+                updatePrescription(data);
+                
+                // 更新JSON输入框
+                const jsonInput = document.getElementById('prescriptionJsonInput');
+                if (jsonInput) {
+                    jsonInput.value = JSON.stringify(data, null, 2);
+                }
+                
+                // 更新按钮状态
+                document.querySelectorAll('#prescriptionPanel .tcm-example-btn').forEach(btn => {
+                    btn.classList.remove('tcm-example-btn--primary');
+                });
+                event.target.classList.add('tcm-example-btn--primary');
+            }
+        }
+
+        function applyPrescriptionData() {
+            const jsonInput = document.getElementById('prescriptionJsonInput');
+            if (!jsonInput) return;
+            
+            try {
+                let data = JSON.parse(jsonInput.value);
+                data = adaptPrescriptionData(data);
+                console.log('DEBUG: applyPrescriptionData - convert data start')
+                updatePrescription(data);
+                console.log('DEBUG: updatePrescription - update data success')
+                alert('中药调理方案数据应用成功！');
+            } catch (error) {
+                alert('JSON 格式错误，请检查语法：\n' + error.message);
+            }
+        }
+
+        function formatPrescriptionJSON() {
+            const jsonInput = document.getElementById('prescriptionJsonInput');
+            if (!jsonInput) return;
+            
+            try {
+                const data = JSON.parse(jsonInput.value);
+                jsonInput.value = JSON.stringify(data, null, 2);
+                alert('JSON 格式化完成！');
+            } catch (error) {
+                alert('JSON 格式错误，无法格式化：\n' + error.message);
+            }
+        }
+
+        function switchTab(tabName) {
+            // 切换标签状态
+            document.querySelectorAll('.tcm-tab-btn').forEach(btn => {
+                btn.classList.remove('tcm-tab-btn--active');
+            });
+            document.getElementById(tabName + 'Tab').classList.add('tcm-tab-btn--active');
+            // 切换面板显示
+            document.querySelectorAll('.tcm-panel').forEach(panel => {
+                panel.style.display = 'none';
+            });
+            document.getElementById(tabName + 'Panel').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

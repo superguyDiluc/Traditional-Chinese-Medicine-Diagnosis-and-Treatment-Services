@@ -1,0 +1,346 @@
+{
+  "肝郁气滞": {
+    "sectionTitle": {
+      "icon": "fas fa-prescription-bottle-alt",
+      "text": "中药调理方案"
+    },
+    "prescriptions": [
+      {
+        "name": "逍遥散加减",
+        "icon": "fas fa-seedling",
+        "sections": [
+          {
+            "title": "组成与剂量",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "柴胡 10克 · 当归 12克 · 白芍 12克",
+              "白术 10克 · 茯苓 15克 · 炙甘草 6克",
+              "薄荷 3克 · 生姜 3片"
+            ]
+          },
+          {
+            "title": "功能主治",
+            "icon": "fas fa-stethoscope",
+            "type": "text",
+            "content": "疏肝解郁，健脾和胃。主治肝郁脾虚证，胸胁胀痛，头痛目眩，口燥咽干。"
+          },
+          {
+            "title": "服用建议",
+            "icon": "fas fa-calendar-day",
+            "type": "text",
+            "content": "每日一剂，水煎服，分早晚两次温服。连服 2~3 周后观察疗效。"
+          },
+          {
+            "title": "调整方向",
+            "icon": "fas fa-lightbulb",
+            "type": "text",
+            "content": "若郁火明显可加栀子、牡丹皮；若胸闷较重可加香附、陈皮理气。"
+          },
+          {
+            "title": "注意事项",
+            "icon": "fas fa-exclamation-triangle",
+            "type": "text",
+            "content": "服药期间保持心情舒畅，避免生气郁闷，饮食清淡，忌辛辣刺激。"
+          }
+        ]
+      },
+      {
+        "name": "疏肝理气茶",
+        "icon": "fas fa-bowl-food",
+        "sections": [
+          {
+            "title": "组成搭配",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "玫瑰花 6克 · 佛手 3克",
+              "陈皮 6克 · 柠檬片 2片",
+              "蜂蜜适量"
+            ]
+          },
+          {
+            "title": "制作方法",
+            "icon": "fas fa-utensils",
+            "type": "steps",
+            "content": [
+              "将玫瑰花、佛手、陈皮用温水冲洗一遍。",
+              "放入茶壶，用 85℃ 热水冲泡 5-8 分钟。",
+              "加入柠檬片和蜂蜜调味，温热饮用。"
+            ]
+          },
+          {
+            "title": "适宜人群",
+            "icon": "fas fa-mortar-pestle",
+            "type": "text",
+            "content": "适合情绪抑郁、胸闷不舒、易怒烦躁者。可作为日常代茶饮，每日 1-2 次。"
+          },
+          {
+            "title": "温馨提示",
+            "icon": "fas fa-circle-info",
+            "type": "text",
+            "content": "孕妇慎用，胃酸过多者应减少柠檬用量，睡前不宜饮用以免影响睡眠。"
+          }
+        ]
+      }
+    ]
+  },
+  "脾胃虚弱": {
+    "sectionTitle": {
+      "icon": "fas fa-prescription-bottle-alt",
+      "text": "中药调理方案"
+    },
+    "prescriptions": [
+      {
+        "name": "四君子汤加味",
+        "icon": "fas fa-seedling",
+        "sections": [
+          {
+            "title": "组成与剂量",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "人参 9克 · 白术 9克 · 茯苓 9克",
+              "炙甘草 6克 · 陈皮 6克",
+              "山药 15克 · 大枣 3枚"
+            ]
+          },
+          {
+            "title": "功能主治",
+            "icon": "fas fa-stethoscope",
+            "type": "text",
+            "content": "益气健脾，和胃助运。主治脾胃气虚，食欲不振，食后腹胀，大便溏薄。"
+          },
+          {
+            "title": "服用建议",
+            "icon": "fas fa-calendar-day",
+            "type": "text",
+            "content": "每日一剂，水煎服，分早中晚三次温服，饭前半小时服用效果更佳。"
+          },
+          {
+            "title": "调整方向",
+            "icon": "fas fa-lightbulb",
+            "type": "text",
+            "content": "若湿重可加薏苡仁、白扁豆；若胃寒可加干姜、肉桂温中散寒。"
+          },
+          {
+            "title": "注意事项",
+            "icon": "fas fa-exclamation-triangle",
+            "type": "text",
+            "content": "忌食生冷、油腻、不易消化食物，宜温热软烂，少食多餐。"
+          }
+        ]
+      },
+      {
+        "name": "健脾养胃粥",
+        "icon": "fas fa-bowl-food",
+        "sections": [
+          {
+            "title": "食材搭配",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "山药 50克 · 薏苡仁 30克",
+              "莲子 20克 · 大米 100克",
+              "红枣 5枚 · 桂圆肉 10克"
+            ]
+          },
+          {
+            "title": "烹制步骤",
+            "icon": "fas fa-utensils",
+            "type": "steps",
+            "content": [
+              "薏苡仁提前浸泡 2 小时，莲子去芯，山药去皮切块。",
+              "将所有食材加水煮沸，转小火煮 45 分钟至粥稠。",
+              "可适量加冰糖调味，温热食用。"
+            ]
+          },
+          {
+            "title": "适宜人群",
+            "icon": "fas fa-mortar-pestle",
+            "type": "text",
+            "content": "适合脾胃虚弱、食欲不振、消化不良者。每日早晚温热食用，连续 2-4 周。"
+          },
+          {
+            "title": "温馨提示",
+            "icon": "fas fa-circle-info",
+            "type": "text",
+            "content": "糖尿病患者应减少桂圆和冰糖用量，腹胀明显者可减少莲子用量。"
+          }
+        ]
+      }
+    ]
+  },
+  "肾阳虚": {
+    "sectionTitle": {
+      "icon": "fas fa-prescription-bottle-alt",
+      "text": "中药调理方案"
+    },
+    "prescriptions": [
+      {
+        "name": "金匮肾气丸",
+        "icon": "fas fa-seedling",
+        "sections": [
+          {
+            "title": "组成与剂量",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "熟地黄 24克 · 山药 12克 · 山茱萸 12克",
+              "茯苓 9克 · 牡丹皮 9克 · 泽泻 9克",
+              "桂枝 3克 · 炮附子 3克"
+            ]
+          },
+          {
+            "title": "功能主治",
+            "icon": "fas fa-stethoscope",
+            "type": "text",
+            "content": "温补肾阳，化气行水。主治肾阳虚衰，腰膝酸软，小便不利，夜尿频多。"
+          },
+          {
+            "title": "服用建议",
+            "icon": "fas fa-calendar-day",
+            "type": "text",
+            "content": "每日一剂，水煎服，分早晚两次温服。建议连服 4-6 周观察疗效。"
+          },
+          {
+            "title": "调整方向",
+            "icon": "fas fa-lightbulb",
+            "type": "text",
+            "content": "若阳虚明显可加仙茅、淫羊藿；若水肿明显可加车前子、白术利水。"
+          },
+          {
+            "title": "注意事项",
+            "icon": "fas fa-exclamation-triangle",
+            "type": "text",
+            "content": "附子有毒，需严格按量使用，高血压患者慎用，服药期间忌食萝卜。"
+          }
+        ]
+      },
+      {
+        "name": "温阳补肾汤",
+        "icon": "fas fa-bowl-food",
+        "sections": [
+          {
+            "title": "食材搭配",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "羊肉 200克 · 当归 10克",
+              "肉桂 3克 · 生姜 15克",
+              "大葱 2根 · 胡椒粉少许"
+            ]
+          },
+          {
+            "title": "烹制步骤",
+            "icon": "fas fa-utensils",
+            "type": "steps",
+            "content": [
+              "羊肉洗净切块，当归、肉桂用纱布包好。",
+              "羊肉飞水后与药包同炖 1.5 小时至肉烂。",
+              "加入生姜丝、葱段，调味后趁热食用。"
+            ]
+          },
+          {
+            "title": "适宜人群",
+            "icon": "fas fa-mortar-pestle",
+            "type": "text",
+            "content": "适合肾阳虚、畏寒怕冷、腰膝酸软者。秋冬季节每周 2-3 次效果更佳。"
+          },
+          {
+            "title": "温馨提示",
+            "icon": "fas fa-circle-info",
+            "type": "text",
+            "content": "阴虚火旺、发热患者不宜食用，高血压患者应减少胡椒粉用量。"
+          }
+        ]
+      }
+    ]
+  },
+  "血瘀体质": {
+    "sectionTitle": {
+      "icon": "fas fa-prescription-bottle-alt",
+      "text": "中药调理方案"
+    },
+    "prescriptions": [
+      {
+        "name": "血府逐瘀汤",
+        "icon": "fas fa-seedling",
+        "sections": [
+          {
+            "title": "组成与剂量",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "当归 9克 · 川芎 4.5克 · 桃仁 12克",
+              "红花 9克 · 生地黄 9克 · 赤芍 6克",
+              "牛膝 9克 · 桔梗 4.5克 · 柴胡 3克"
+            ]
+          },
+          {
+            "title": "功能主治",
+            "icon": "fas fa-stethoscope",
+            "type": "text",
+            "content": "活血化瘀，行气止痛。主治胸中血瘀，胸痛胸闷，日久不愈，内热瞀闷。"
+          },
+          {
+            "title": "服用建议",
+            "icon": "fas fa-calendar-day",
+            "type": "text",
+            "content": "每日一剂，水煎服，分早晚两次温服。月经期间暂停服用。"
+          },
+          {
+            "title": "调整方向",
+            "icon": "fas fa-lightbulb",
+            "type": "text",
+            "content": "若瘀血较重可加三七、蒲黄；若气滞明显可加香附、青皮疏肝理气。"
+          },
+          {
+            "title": "注意事项",
+            "icon": "fas fa-exclamation-triangle",
+            "type": "text",
+            "content": "孕妇禁用，月经期及有出血倾向者慎用，服药期间忌食寒凉食物。"
+          }
+        ]
+      },
+      {
+        "name": "活血化瘀茶",
+        "icon": "fas fa-bowl-food",
+        "sections": [
+          {
+            "title": "组成搭配",
+            "icon": "fas fa-list-ul",
+            "type": "list",
+            "content": [
+              "丹参 5克 · 红花 3克",
+              "山楂 10克 · 陈皮 3克",
+              "冰糖适量"
+            ]
+          },
+          {
+            "title": "制作方法",
+            "icon": "fas fa-utensils",
+            "type": "steps",
+            "content": [
+              "将所有药材用清水冲洗干净。",
+              "放入保温壶，用沸水冲泡 15 分钟。",
+              "可重复冲泡 2-3 次，代茶饮用。"
+            ]
+          },
+          {
+            "title": "适宜人群",
+            "icon": "fas fa-mortar-pestle",
+            "type": "text",
+            "content": "适合血瘀体质、面色晦暗、舌质紫暗者。每日 1-2 次，连续饮用 4-6 周。"
+          },
+          {
+            "title": "温馨提示",
+            "icon": "fas fa-circle-info",
+            "type": "text",
+            "content": "月经期间停用，胃酸过多者饭后饮用，有出血性疾病者禁用。"
+          }
+        ]
+      }
+    ]
+  }
+}

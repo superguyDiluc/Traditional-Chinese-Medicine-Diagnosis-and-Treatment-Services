@@ -1,0 +1,30 @@
+{
+  "title": {
+    "icon": "fas fa-leaf",
+    "text": "大体状况（例子心肾不交 · 阴虚火旺）"
+  },
+  "symptoms": [
+    {
+      "icon": "fas fa-moon",
+      "text": "失眠"
+    },
+    {
+      "icon": "fas fa-cloud-moon", 
+      "text": "多梦易醒"
+    },
+    {
+      "icon": "fas fa-heart",
+      "text": "心悸"
+    },
+    {
+      "icon": "fas fa-fire",
+      "text": "手足心热"
+    }
+  ],
+  "summary": {
+    "treatmentGoal": "滋阴潜阳 · 宁心安神",
+    "constitution": "阴虚火旺 · 心肾不交", 
+    "recommendation": "中药调理 + 生活养护"
+  },
+  "note": "建议在专业中医师指导下辨证施治，可结合体质评估和舌脉表现进行个性化微调。"
+}
