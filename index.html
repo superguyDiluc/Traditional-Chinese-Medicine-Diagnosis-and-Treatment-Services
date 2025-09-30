@@ -14,6 +14,10 @@
             --tcm-text-muted: #5c675c;
             --tcm-border-radius-lg: 18px;
             --tcm-shadow-soft: 0 20px 40px rgba(46, 125, 50, 0.08);
+            --tcm-highlight-yellow: #fff8e1;
+            --tcm-alert-red: #ffebee;
+            --tcm-warning-border: #ffa000;
+            --tcm-alert-border: #e53935;
         }
 
         * {
@@ -319,6 +323,75 @@
             color: var(--tcm-text-muted);
         }
 
+        .tcm-followup-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .tcm-followup-card {
+            background: #ffffff;
+            border-radius: var(--tcm-border-radius-lg);
+            padding: 22px 24px;
+            box-shadow: var(--tcm-shadow-soft);
+            border-top: 4px solid var(--tcm-accent-green);
+            display: grid;
+            gap: 12px;
+        }
+
+        .tcm-followup-card__title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--tcm-text-main);
+        }
+
+        .tcm-followup-card__title i {
+            font-size: 1.2rem;
+            color: var(--tcm-brand-green);
+        }
+
+        .tcm-followup-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-followup-card ul li + li {
+            margin-top: 6px;
+        }
+
+        .tcm-followup-card p {
+            margin: 0;
+            color: var(--tcm-text-muted);
+        }
+
+        .tcm-followup-card--alert {
+            border-top-color: var(--tcm-alert-border);
+            background: linear-gradient(135deg, rgba(229, 57, 53, 0.12), rgba(229, 57, 53, 0.05));
+        }
+
+        .tcm-followup-banner {
+            margin-top: 22px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            background: var(--tcm-highlight-yellow);
+            border: 1px dashed var(--tcm-warning-border);
+            color: var(--tcm-text-main);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.6;
+        }
+
+        .tcm-followup-banner i {
+            color: var(--tcm-warning-border);
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
         .tcm-warning {
             margin-top: 26px;
             padding: 16px 18px;
@@ -354,6 +427,10 @@
 
             .tcm-toggle-button {
                 align-self: flex-end;
+            }
+
+            .tcm-followup-grid {
+                gap: 16px;
             }
         }
 
@@ -457,79 +534,24 @@
             <h3 style="margin: 0 0 16px 0; color: var(--tcm-brand-green); display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-cogs"></i> 中医调理方案生成测试
             </h3>
-            
-            <!-- 标签页 -->
-            <div style="display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 2px solid #f0f0f0;">
-                <button id="heroTab" onclick="switchTab('hero')" class="tcm-tab-btn tcm-tab-btn--active">大体状况模块</button>
-                <button id="prescriptionTab" onclick="switchTab('prescription')" class="tcm-tab-btn">中药调理模块</button>
-            </div>
-            
-            <!-- Hero 模块控制 -->
-            <div id="heroPanel" class="tcm-panel">
-                <!-- AI 生成区域 -->
-                <div style="background: #f8fdf8; border: 2px dashed #66bb6a; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                    <h4 style="margin: 0 0 12px 0; color: var(--tcm-brand-green); display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-robot"></i> AI 生成大体状况
-                    </h4>
-                    <div style="display: grid; gap: 12px;">
-                        <label style="color: var(--tcm-text-main); font-weight: 600;">
-                            描述患者症状：
-                        </label>
-                        <textarea id="heroPromptInput" placeholder="例如：患者失眠多梦，心悸不安，手足心热，口干咽燥，腰膝酸软，舌红少苔，脉细数" style="min-height: 80px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <button onclick="generateHeroWithAI()" class="tcm-apply-btn" style="background: linear-gradient(135deg, #66bb6a, #4caf50);">
-                                <i class="fas fa-magic"></i> AI 生成 JSON
-                            </button>
-                            <div id="heroGenerating" style="display: none; color: #666; font-size: 14px;">
-                                <i class="fas fa-spinner fa-spin"></i> 生成中...
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+            <!-- 统一AI生成区域 -->
+            <div style="background: #f8fdf8; border: 2px dashed #66bb6a; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                <h4 style="margin: 0 0 12px 0; color: var(--tcm-brand-green); display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-robot"></i> AI 生成完整中医调理方案
+                </h4>
                 <div style="display: grid; gap: 12px;">
                     <label style="color: var(--tcm-text-main); font-weight: 600;">
-                        大体状况 JSON 数据：
+                        描述患者症状：
                     </label>
-                    <textarea id="heroJsonInput" style="min-height: 180px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-family: 'Courier New', monospace; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
-                    <div style="display: flex; gap: 12px;">
-                        <button onclick="applyHeroData()" class="tcm-apply-btn">应用到大体状况</button>
-                        <button onclick="formatHeroJSON()" class="tcm-format-btn">格式化</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Prescription 模块控制 -->
-            <div id="prescriptionPanel" class="tcm-panel" style="display: none;">
-                <!-- AI 生成区域 -->
-                <div style="background: #f8fdf8; border: 2px dashed #66bb6a; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                    <h4 style="margin: 0 0 12px 0; color: var(--tcm-brand-green); display: flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-robot"></i> AI 生成中药调理方案
-                    </h4>
-                    <div style="display: grid; gap: 12px;">
-                        <label style="color: var(--tcm-text-main); font-weight: 600;">
-                            描述证型或症状：
-                        </label>
-                        <textarea id="prescriptionPromptInput" placeholder="例如：肝郁气滞型失眠，需要疏肝解郁，养心安神的调理方案" style="min-height: 80px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <button onclick="generatePrescriptionWithAI()" class="tcm-apply-btn" style="background: linear-gradient(135deg, #66bb6a, #4caf50);">
-                                <i class="fas fa-magic"></i> AI 生成 JSON
-                            </button>
-                            <div id="prescriptionGenerating" style="display: none; color: #666; font-size: 14px;">
-                                <i class="fas fa-spinner fa-spin"></i> 生成中...
-                            </div>
+                    <textarea id="unifiedPromptInput" placeholder="例如：患者失眠多梦，心悸不安，手足心热，口干咽燥，腰膝酸软，舌红少苔，脉细数" style="min-height: 80px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <button onclick="generateUnifiedPlan()" class="tcm-apply-btn" style="background: linear-gradient(135deg, #66bb6a, #4caf50);">
+                            <i class="fas fa-magic"></i> AI 生成完整方案
+                        </button>
+                        <div id="unifiedGenerating" style="display: none; color: #666; font-size: 14px;">
+                            <i class="fas fa-spinner fa-spin"></i> 生成中...
                         </div>
-                    </div>
-                </div>
-
-                <div style="display: grid; gap: 12px;">
-                    <label style="color: var(--tcm-text-main); font-weight: 600;">
-                        中药调理方案 JSON 数据：
-                    </label>
-                    <textarea id="prescriptionJsonInput" style="min-height: 250px; padding: 12px; border: 2px solid rgba(46, 125, 50, 0.2); border-radius: 8px; font-family: 'Courier New', monospace; font-size: 14px; resize: vertical; width: 100%; box-sizing: border-box;"></textarea>
-                    <div style="display: flex; gap: 12px;">
-                        <button onclick="applyPrescriptionData()" class="tcm-apply-btn">应用到中药调理</button>
-                        <button onclick="formatPrescriptionJSON()" class="tcm-format-btn">格式化</button>
                     </div>
                 </div>
             </div>
@@ -696,6 +718,7 @@
                 </article>
             </section>
 
+            <!-- 日常调理建议 -->
             <section id="suggestion">
                 <h2 class="tcm-section-title"><i class="fas fa-seedling"></i> 日常生活调养</h2>
                 <div class="tcm-tips-grid">
@@ -722,11 +745,60 @@
                 </div>
             </section>
 
-            <section>
+            <!-- 复诊与安全提示 -->
+            <section id="followup">
                 <h2 class="tcm-section-title"><i class="fas fa-notes-medical"></i> 复诊与安全提示</h2>
-                <div class="tcm-warning">
-                    <i class="fas fa-info-circle"></i>
-                    调理过程中如出现持续高热、胸闷或情绪异常波动，请立即就医；慢性基础疾病患者需同步告知主诊医师。
+                <div class="tcm-followup-grid">
+                    <div class="tcm-followup-card">
+                        <div class="tcm-followup-card__title">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>复诊时间建议</span>
+                        </div>
+                        <ul>
+                            <li>初次调理后 2 周复诊，评估睡眠质量、心悸程度与舌脉变化。</li>
+                            <li>症状改善后每 4~6 周随访一次，根据体质动态调整方药。</li>
+                            <li>伴有基础慢性疾病者，与原主治医生保持同步沟通。</li>
+                        </ul>
+                    </div>
+                    <div class="tcm-followup-card">
+                        <div class="tcm-followup-card__title">
+                            <i class="fas fa-stethoscope"></i>
+                            <span>复诊沟通要点</span>
+                        </div>
+                        <ul>
+                            <li>记录睡眠、情绪、饮食与体力的变化趋势。</li>
+                            <li>如同时服用西药，请携带清单，避免药物相互作用。</li>
+                            <li>若出现胃口减退或大便异常，及时告知医师调整方剂。</li>
+                        </ul>
+                    </div>
+                    <div class="tcm-followup-card tcm-followup-card--alert">
+                        <div class="tcm-followup-card__title">
+                            <i class="fas fa-triangle-exclamation"></i>
+                            <span>需立即就医的信号</span>
+                        </div>
+                        <ul>
+                            <li>持续高热、胸闷气短、心前区疼痛或心率骤然不齐。</li>
+                            <li>突发神志模糊、肢体无力、持续性头晕或抽搐。</li>
+                            <li>出现血压飙升、血糖失控或原有慢病急性加重。</li>
+                        </ul>
+                    </div>
+                    <div class="tcm-followup-card tcm-followup-card--alert">
+                        <div class="tcm-followup-card__title">
+                            <i class="fas fa-shield-heart"></i>
+                            <span>安全用药提示</span>
+                        </div>
+                        <ul>
+                            <li>孕期、哺乳期及儿童调理须遵医嘱，不可自行加减剂量。</li>
+                            <li>服药后若出现明显过敏、皮疹或剧烈胃肠不适，应立即停药并就医。</li>
+                            <li>避免与酒精、强刺激性饮食同用；定期复查肝肾功能确保安全。</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tcm-followup-banner">
+                    <i class="fas fa-user-md"></i>
+                    <div>
+                        <strong>温馨提示：</strong> 中医调理需因人制宜，请结合舌脉、体质与伴随疾病综合评估。若出现新的不适或精神状态明显波动，务必与专业医师沟通后再调整方案。
+                    </div>
                 </div>
             </section>
         </div>
@@ -1149,11 +1221,42 @@
             }
         };
 
+        // Suggestion 示例数据
+        const suggestionExamples = {
+            "原始示例": {
+                "sectionTitle": {
+                    "icon": "fas fa-seedling",
+                    "text": "日常生活调养"
+                },
+                "suggestions": [
+                    {
+                        "icon": "fas fa-utensils",
+                        "title": "饮食节奏",
+                        "content": "主食搭配莲子、山药、银耳，补充优质蛋白（如鱼肉、豆制品）。晚餐宜清淡，睡前 2 小时不进食。"
+                    },
+                    {
+                        "icon": "fas fa-bed",
+                        "title": "睡眠仪式",
+                        "content": "坚持 23:00 前入睡，睡前温水泡脚 15 分钟，可加入艾叶或薰衣草。放下电子产品，做 5 分钟深呼吸。"
+                    },
+                    {
+                        "icon": "fas fa-face-smile",
+                        "title": "情志调护",
+                        "content": "尝试冥想、瑜伽或太极，每日记录情绪变化。建议适度户外日光浴，调和心肾。"
+                    },
+                    {
+                        "icon": "fas fa-person-running",
+                        "title": "体质管理",
+                        "content": "每周 3~4 次中等强度运动（如快走、八段锦），避免熬夜与过度劳累，保持睡眠环境安静舒适。"
+                    }
+                ]
+            }
+        };
+
         // AI 数据适配函数
         function adaptHeroData(aiData) {
             return {
                 title: {
-                    icon: aiData.icon || "fas fa-leaf",
                     text: aiData.syndrome || "未知证型"
                 },
                 symptoms: Array.isArray(aiData.symptoms)
@@ -1164,10 +1267,10 @@
                     : [],
                 summary: {
                     treatmentGoal: aiData.description || "",
-                    constitution: aiData.patientName || "",
-                    recommendation: (aiData.pulse || "") + (aiData.tongue ? " · " + aiData.tongue : "")
+                    constitution: aiData.constitution || "",
+                    recommendation: aiData.recommendation
                 },
-                note: aiData.description || ""
+                note: aiData.hint
             };
         }
 
@@ -1271,18 +1374,189 @@
             };
         }
 
+        function adaptSuggestionData(aiData) {
+            // 兼容 AI 结构转换为前端预期结构
+            let suggestions = [];
+            if (Array.isArray(aiData.suggestions)) {
+                suggestions = aiData.suggestions.map((s, idx) => {
+                    const icon = s.icon || (idx === 0 ? "fas fa-utensils" : idx === 1 ? "fas fa-bed" : idx === 2 ? "fas fa-face-smile" : "fas fa-person-running");
+                    return {
+                        icon: icon,
+                        title: s.title || s.name || `建议${idx+1}`,
+                        content: s.content || s.description || ""
+                    };
+                });
+            } else if (aiData.tips) {
+                // 如果是tips数组
+                suggestions = aiData.tips.map((tip, idx) => {
+                    const icon = tip.icon || (idx === 0 ? "fas fa-utensils" : idx === 1 ? "fas fa-bed" : idx === 2 ? "fas fa-face-smile" : "fas fa-person-running");
+                    return {
+                        icon: icon,
+                        title: tip.title || `建议${idx+1}`,
+                        content: tip.content || tip.description || ""
+                    };
+                });
+            }
+            return {
+                sectionTitle: {
+                    icon: aiData.sectionTitle?.icon || "fas fa-seedling",
+                    text: aiData.sectionTitle?.text || "日常生活调养"
+                },
+                suggestions
+            };
+        }
+
+        function adaptFollowupData(aiData = {}) {
+            const normalizeEntries = (entries, defaultIcons, variant) => {
+                if (!Array.isArray(entries)) return [];
+                return entries.map((entry, idx) => {
+                    const icon = entry.icon || defaultIcons[idx % defaultIcons.length];
+                    let items = [];
+                    if (Array.isArray(entry.items)) {
+                        items = entry.items;
+                    } else if (Array.isArray(entry.content)) {
+                        items = entry.content;
+                    } else if (entry.content) {
+                        items = [entry.content];
+                    } else if (entry.description) {
+                        items = [entry.description];
+                    }
+
+                    const textContent = typeof entry.content === 'string' ? entry.content : (entry.note || entry.remark || '');
+
+                    return {
+                        icon,
+                        title: entry.title || entry.name || `提示${idx + 1}`,
+                        items,
+                        content: textContent,
+                        variant: entry.variant || variant || ''
+                    };
+                });
+            };
+
+            const followupItems = normalizeEntries(
+                aiData.followupItems || aiData.followups || aiData.visitPlan || aiData.reviewPlan,
+                ['fas fa-calendar-check', 'fas fa-stethoscope', 'fas fa-clipboard-list']
+            );
+
+            const monitoringItems = normalizeEntries(
+                aiData.monitoring || aiData.monitoringChecklist || aiData.checklist,
+                ['fas fa-chart-line', 'fas fa-heartbeat', 'fas fa-eye']
+            );
+
+            const safetyNotes = normalizeEntries(
+                aiData.safetyNotes || aiData.medicationSafety || aiData.safetyTips || aiData.homeCareNotes,
+                ['fas fa-clipboard-check', 'fas fa-capsules', 'fas fa-shield-heart']
+            );
+
+            const warningSignals = normalizeEntries(
+                aiData.warningSignals || aiData.alerts || aiData.emergencySignals || aiData.redFlags,
+                ['fas fa-triangle-exclamation', 'fas fa-hospital', 'fas fa-phone'],
+                'alert'
+            );
+
+            const sectionTitle = {
+                icon: aiData.sectionTitle?.icon || 'fas fa-notes-medical',
+                text: aiData.sectionTitle?.text || (typeof aiData.sectionTitle === 'string' ? aiData.sectionTitle : '复诊与安全提示')
+            };
+
+            const overallReminder = aiData.overallReminder || aiData.reminder || aiData.summary || aiData.note || '';
+
+            return {
+                sectionTitle,
+                followupItems,
+                monitoring: monitoringItems,
+                safetyNotes,
+                warningSignals,
+                overallReminder
+            };
+        }
+
+        function renderFollowupCard(card) {
+            const isAlert = card.variant === 'alert' || card.variant === 'warning';
+            const className = isAlert ? 'tcm-followup-card tcm-followup-card--alert' : 'tcm-followup-card';
+            const listItems = card.items && card.items.length
+                ? `<ul>${card.items.map(item => `<li>${item}</li>`).join('')}</ul>`
+                : '';
+            const textContent = card.content
+                ? `<p>${card.content}</p>`
+                : '';
+            return `
+                <div class="${className}">
+                    <div class="tcm-followup-card__title">
+                        <i class="${card.icon}"></i>
+                        <span>${card.title}</span>
+                    </div>
+                    ${listItems}
+                    ${textContent}
+                </div>
+            `;
+        }
+
+        function updateFollowup(data) {
+            const followupElement = document.getElementById('followup');
+            if (!followupElement) return;
+
+            const cards = [];
+
+            const pushCards = (items = [], variant) => {
+                items.forEach(item => {
+                    cards.push(renderFollowupCard({ ...item, variant: item.variant || variant }));
+                });
+            };
+
+            pushCards(data.followupItems);
+            pushCards(data.monitoring);
+            pushCards(data.safetyNotes);
+            pushCards(data.warningSignals, 'alert');
+
+            const cardsHTML = cards.length
+                ? `<div class="tcm-followup-grid">${cards.join('')}</div>`
+                : '';
+
+            const bannerHTML = data.overallReminder
+                ? `<div class="tcm-followup-banner">
+                        <i class="fas fa-user-md"></i>
+                        <div>
+                            <strong>温馨提示：</strong> ${data.overallReminder}
+                        </div>
+                    </div>`
+                : '';
+
+            followupElement.innerHTML = `
+                <h2 class="tcm-section-title"><i class="${data.sectionTitle.icon}"></i> ${data.sectionTitle.text}</h2>
+                ${cardsHTML}
+                ${bannerHTML}
+            `;
+        }
+
+        function updateSuggestion(data) {
+            const suggestionElement = document.getElementById('suggestion');
+            if (suggestionElement) {
+                const { sectionTitle, suggestions } = data;
+                const tipsHTML = suggestions.map(tip => 
+                    `<div class="tcm-tip-card">
+                        <i class="${tip.icon}"></i>
+                        <h3>${tip.title}</h3>
+                        <p>${tip.content}</p>
+                    </div>`
+                ).join('\n                    ');
+
+                suggestionElement.innerHTML = `
+                    <h2 class="tcm-section-title"><i class="${sectionTitle.icon}"></i> ${sectionTitle.text}</h2>
+                    <div class="tcm-tips-grid">
+                        ${tipsHTML}
+                    </div>
+                `;
+            }
+        }
+
         // TCM Hero 模块初始化
         document.addEventListener('DOMContentLoaded', function() {
-            // 初始化Hero JSON输入框
-            const heroJsonInput = document.getElementById('heroJsonInput');
-            if (heroJsonInput) {
-                heroJsonInput.value = JSON.stringify(exampleData, null, 2);
-            }
-            
-            // 初始化Prescription JSON输入框
-            const prescriptionJsonInput = document.getElementById('prescriptionJsonInput');
-            if (prescriptionJsonInput) {
-                prescriptionJsonInput.value = JSON.stringify(prescriptionExamples['原始示例'], null, 2);
+            // 初始化统一输入框
+            const unifiedPromptInput = document.getElementById('unifiedPromptInput');
+            if (unifiedPromptInput) {
+                unifiedPromptInput.value = '患者失眠多梦，心悸不安，手足心热，口干咽燥，腰膝酸软，舌红少苔，脉细数';
             }
         });
 
@@ -1309,128 +1583,6 @@
 
         // AI 生成功能
         const API_BASE_URL = 'http://localhost:5000';
-
-        async function generateHeroWithAI() {
-            const promptInput = document.getElementById('heroPromptInput');
-            const loadingDiv = document.getElementById('heroGenerating');
-            const jsonInput = document.getElementById('heroJsonInput');
-            
-            const prompt = promptInput.value.trim();
-            if (!prompt) {
-                alert('请输入症状描述');
-                return;
-            }
-
-            // 显示加载状态
-            loadingDiv.style.display = 'block';
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/generate-hero`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ prompt: prompt })
-                });
-
-                console.log('DEBUG: start get response.json')
-                const result = await response.json();
-
-                if (result.success) {
-                    console.log('DEBUG: result success')
-                    // 容错：如果AI返回的是字符串而不是对象，尝试解析
-                    let aiData = result.data;
-                    // 字段适配（如有需要可补充）
-                    jsonInput.value = JSON.stringify(aiData, null, 2);
-                    console.log('DEBUG: start apply hero data')
-                    applyHeroData();
-                    alert('AI 生成成功并已应用到页面！');
-                } else {
-                    console.error('生成失败:', result);
-                    alert('生成失败: ' + (result.error || '未知错误') + '\\n原始响应：' + (result.raw_response || ''));
-                }
-
-            } catch (error) {
-                console.error('请求失败:', error);
-                alert('请求失败，请检查后端服务是否运行 (http://localhost:5000)');
-            } finally {
-                // 隐藏加载状态
-                loadingDiv.style.display = 'none';
-            }
-        }
-
-        async function generatePrescriptionWithAI() {
-            const promptInput = document.getElementById('prescriptionPromptInput');
-            const loadingDiv = document.getElementById('prescriptionGenerating');
-            const jsonInput = document.getElementById('prescriptionJsonInput');
-            
-            const prompt = promptInput.value.trim();
-            if (!prompt) {
-                alert('请输入证型或症状描述');
-                return;
-            }
-
-            // 显示加载状态
-            loadingDiv.style.display = 'block';
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/generate-prescription`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ prompt: prompt })
-                });
-
-                const result = await response.json();
-                
-                if (result.success) {
-                    // 将生成的 JSON 填入输入框
-                    jsonInput.value = JSON.stringify(result.data, null, 2);
-                    console.log('DEBUG: generatePrescriptionWithAI - json stringify success')
-                    
-                    // 自动应用到页面
-                    applyPrescriptionData();
-                    
-                    alert('AI 生成成功并已应用到页面！');
-                } else {
-                    console.error('生成失败:', result);
-                    alert('生成失败: ' + (result.error || '未知错误'));
-                }
-            } catch (error) {
-                console.error('请求失败:', error);
-                alert('请求失败，请检查后端服务是否运行 (http://localhost:5000)');
-            } finally {
-                // 隐藏加载状态
-                loadingDiv.style.display = 'none';
-            }
-        }
-
-        function applyHeroData() {
-            const jsonInput = document.getElementById('heroJsonInput');
-            if (!jsonInput) return;
-            try {
-                let data = jsonInput.value;
-                if (typeof data === 'string') {
-                    try {
-                        data = JSON.parse(data);
-                    } catch (e) {
-                        try {
-                            data = JSON.parse(data.trim());
-                        } catch (e2) {
-                            alert('JSON 格式错误，请检查语法：\n' + e2.message + '\n原始内容：' + jsonInput.value);
-                            return;
-                        }
-                    }
-                }
-                // 适配 AI 数据结构
-                const adapted = adaptHeroData(data);
-                updateTcmHero(adapted);
-                alert('大体状况数据应用成功！');
-            } catch (error) {
-                alert('JSON 格式错误，请检查语法：\n' + error.message + '\n原始内容：' + jsonInput.value);
-            }
-        }
 
         function formatHeroJSON() {
             const jsonInput = document.getElementById('heroJsonInput');
@@ -1494,18 +1646,86 @@
             }
         }
 
-        function switchTab(tabName) {
-            // 切换标签状态
-            document.querySelectorAll('.tcm-tab-btn').forEach(btn => {
-                btn.classList.remove('tcm-tab-btn--active');
-            });
-            document.getElementById(tabName + 'Tab').classList.add('tcm-tab-btn--active');
-            // 切换面板显示
-            document.querySelectorAll('.tcm-panel').forEach(panel => {
-                panel.style.display = 'none';
-            });
-            document.getElementById(tabName + 'Panel').style.display = 'block';
+        function applySuggestionData() {
+            const jsonInput = document.getElementById('suggestionJsonInput');
+            if (!jsonInput) return;
+            
+            try {
+                let data = JSON.parse(jsonInput.value);
+                data = adaptSuggestionData(data);
+                updateSuggestion(data);
+                alert('日常生活调养建议数据应用成功！');
+            } catch (error) {
+                alert('JSON 格式错误，请检查语法：\n' + error.message);
+            }
         }
+
+        function formatSuggestionJSON() {
+            const jsonInput = document.getElementById('suggestionJsonInput');
+            if (!jsonInput) return;
+            
+            try {
+                const data = JSON.parse(jsonInput.value);
+                jsonInput.value = JSON.stringify(data, null, 2);
+                alert('JSON 格式化完成！');
+            } catch (error) {
+                alert('JSON 格式错误，无法格式化：\n' + error.message);
+            }
+        }
+
+        // 统一生成完整中医调理方案
+        async function generateUnifiedPlan() {
+            const promptInput = document.getElementById('unifiedPromptInput');
+            const loadingDiv = document.getElementById('unifiedGenerating');
+            
+            const prompt = promptInput.value.trim();
+            if (!prompt) {
+                alert('请输入患者症状描述');
+                return;
+            }
+
+            // 显示加载状态
+            loadingDiv.style.display = 'block';
+            
+            try {
+                // 调用统一的API
+                const response = await fetch(`${API_BASE_URL}/generate-unified`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // 应用所有数据到页面
+                    const adaptedHero = adaptHeroData(result.data.hero);
+                    updateTcmHero(adaptedHero);
+
+                    const adaptedPrescription = adaptPrescriptionData(result.data.prescription);
+                    updatePrescription(adaptedPrescription);
+
+                    const adaptedSuggestion = adaptSuggestionData(result.data.suggestion);
+                    updateSuggestion(adaptedSuggestion);
+
+                    if (result.data.followup) {
+                        const adaptedFollowup = adaptFollowupData(result.data.followup);
+                        updateFollowup(adaptedFollowup);
+                    }
+
+                    alert('AI 生成完整中医调理方案成功！');
+                } else {
+                    alert('生成失败: ' + (result.error || '未知错误'));
+                }
+            } catch (error) {
+                console.error('请求失败:', error);
+                alert('请求失败，请检查后端服务是否运行 (http://localhost:5000)');
+            } finally {
+                // 隐藏加载状态
+                loadingDiv.style.display = 'none';
+            }
+        }
+
     </script>
 </body>
 </html>

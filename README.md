@@ -1,192 +1,147 @@
-# 中医调理方案生成系统使用说明
+# 中医 AI 系统使用说明
 
-## 概述
+## 系统概述
+该系统集成了大模型 AI 功能，可以根据用户输入的症状描述自动生成中医诊断和调理方案的 JSON 数据，并实时显示在网页上。
 
-本系统通过结构化的 JSON 数据来生成中医调理方案的展示页面。主要用于动态生成 `tcm-hero` 模块的内容，该模块展示患者的大体状况、症状标签和调理总结。
+## 功能特点
+- **AI 智能生成**: 基于 DashScope API 的大模型，智能生成中医诊断内容
+- **双模块支持**: 支持"大体状况"和"中药调理方案"两个模块的生成
+- **实时预览**: 生成的内容立即应用到页面显示
+- **JSON 编辑**: 支持手动编辑和格式化 JSON 数据
+- **多种示例**: 内置多种证型示例，快速体验
 
-## JSON 数据结构
+## 快速启动
 
-### 基本格式
+### 方法一：一键启动（推荐）
+1. 双击运行 `start_system.bat`
+2. 系统会自动安装依赖并启动前后端服务
+3. 访问 http://localhost:8000 使用系统
 
-```json
-{
-  "title": {
-    "icon": "Font Awesome 图标类名",
-    "text": "标题文本"
-  },
-  "symptoms": [
-    {
-      "icon": "Font Awesome 图标类名",
-      "text": "症状描述"
-    }
-  ],
-  "summary": {
-    "treatmentGoal": "调理目标",
-    "constitution": "体质特点",
-    "recommendation": "推荐节奏"
-  },
-  "note": "温馨提示内容"
-}
-```
+### 方法二：手动启动
+1. 安装 Python 依赖：
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### 字段说明
+2. 启动后端服务：
+   ```bash
+   python ai_backend.py
+   ```
 
-- **title**: 模块标题
-  - `icon`: Font Awesome 图标类名（如 "fas fa-leaf"）
-  - `text`: 显示的标题文本
+3. 启动前端服务：
+   ```bash
+   python -m http.server 8000
+   ```
 
-- **symptoms**: 症状标签数组
-  - `icon`: 每个症状对应的图标
-  - `text`: 症状描述文本
-
-- **summary**: 调理总结信息
-  - `treatmentGoal`: 调理目标
-  - `constitution`: 体质特点
-  - `recommendation`: 推荐的调理节奏
-
-- **note**: 页面底部的温馨提示文本
+4. 在浏览器访问：http://localhost:8000
 
 ## 使用方法
 
-### 1. 使用预设示例
+### 1. AI 生成大体状况
+1. 在控制面板中选择"大体状况模块"标签
+2. 在"AI 生成大体状况"区域输入患者症状描述
+   - 例如：患者失眠多梦，心悸不安，手足心热，口干咽燥，腰膝酸软，舌红少苔，脉细数
+3. 点击"AI 生成 JSON"按钮
+4. 等待生成完成，系统会自动应用到页面显示
 
-页面顶部提供了几个预设的病症示例：
-- 肝郁气滞
-- 脾胃虚弱  
-- 肾阳虚
-- 血瘀体质
-- 原始示例（心肾不交 · 阴虚火旺）
+### 2. AI 生成中药调理方案
+1. 在控制面板中选择"中药调理模块"标签
+2. 在"AI 生成中药调理方案"区域输入证型或症状描述
+   - 例如：肝郁气滞型失眠，需要疏肝解郁，养心安神的调理方案
+3. 点击"AI 生成 JSON"按钮
+4. 等待生成完成，系统会自动应用到页面显示
 
-点击对应按钮即可快速切换不同的病症展示。
+### 3. 手动编辑 JSON
+- 在 JSON 输入框中可以手动编辑生成的数据
+- 点击"格式化"按钮美化 JSON 格式
+- 点击"应用到xxx"按钮将修改应用到页面
 
-### 2. 自定义数据
+### 4. 使用预设示例
+- 点击"肝郁气滞"、"脾胃虚弱"等按钮快速加载示例数据
+- 点击"原始示例"恢复默认数据
 
-1. 在 JSON 编辑框中修改或输入新的 JSON 数据
-2. 点击"格式化 JSON"按钮可以美化 JSON 格式
-3. 点击"应用数据"按钮将自定义数据应用到页面
+## 技术架构
 
-### 3. API 集成
+### 后端 (ai_backend.py)
+- **框架**: Flask + Flask-CORS
+- **AI 模型**: 阿里云 DashScope API
+- **端口**: 5000
+- **API 接口**:
+  - `/generate-hero` - 生成大体状况 JSON
+  - `/generate-prescription` - 生成中药调理方案 JSON
+  - `/test` - 服务状态检测
 
-在实际应用中，可以通过以下方式集成：
+### 前端 (index.html)
+- **技术**: HTML5 + CSS3 + JavaScript
+- **UI 组件**: Font Awesome 图标
+- **端口**: 8000
+- **主要功能**:
+  - 响应式设计的中医诊断界面
+  - 双模块控制面板
+  - AI 生成功能集成
+  - JSON 数据实时应用
 
-```javascript
-// 从后端 API 获取数据
-fetch('/api/tcm-diagnosis', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        symptoms: ['失眠', '心悸', '盗汗'],
-        patient_info: { /* 患者信息 */ }
-    })
-})
-.then(response => response.json())
-.then(data => {
-    updateTcmHero(data);
-});
+## 配置说明
+
+### API 密钥配置
+在 `ai_backend.py` 中修改以下配置：
+```python
+API_KEY = "sk-90426267f6844b9d815527ec5c210644"
+APP_ID = "09927ed45026488e961c35d96fb4b5c4"
 ```
 
-## JavaScript API
+### Prompt 模板自定义
+可以在 `ai_backend.py` 中修改 `TCM_HERO_PROMPT` 和 `PRESCRIPTION_PROMPT` 变量来自定义 AI 生成的提示词模板。
 
-### 核心函数
+## 常见问题
 
-#### `generateTcmHero(data)`
-根据 JSON 数据生成 HTML 模板字符串。
+### Q: AI 生成失败怎么办？
+A: 检查以下几点：
+1. 确保后端服务正在运行 (http://localhost:5000/test)
+2. 检查 API 密钥是否有效
+3. 确保网络连接正常
+4. 查看浏览器控制台的错误信息
 
-参数：
-- `data`: 符合规格的 JSON 对象
+### Q: 生成的 JSON 格式不正确？
+A: 系统会自动从 AI 响应中提取 JSON，如果提取失败，可以：
+1. 检查原始响应内容
+2. 手动修正 JSON 格式
+3. 优化输入的症状描述
 
-返回：
-- HTML 字符串
-
-#### `updateTcmHero(data)`
-更新页面中的 tcm-hero 模块内容。
-
-参数：
-- `data`: 符合规格的 JSON 对象
-
-#### `loadExample(exampleName)`
-加载预设示例数据。
-
-参数：
-- `exampleName`: 示例名称（如 "肝郁气滞"）
-
-#### `applyCustomData()`
-应用 JSON 编辑框中的自定义数据。
-
-#### `formatJSON()`
-格式化 JSON 编辑框中的内容。
-
-## 扩展说明
-
-### 添加新的病症示例
-
-在 `tcmExamples` 对象中添加新的示例：
-
-```javascript
-const tcmExamples = {
-    // 现有示例...
-    "新病症": {
-        "title": {
-            "icon": "fas fa-leaf",
-            "text": "大体状况（新病症描述）"
-        },
-        "symptoms": [
-            // 症状列表
-        ],
-        "summary": {
-            // 总结信息
-        },
-        "note": "温馨提示"
-    }
-};
-```
-
-### 自定义图标
-
-可以使用任何 Font Awesome 图标，常用的中医相关图标：
-- `fas fa-leaf` - 叶子（通用）
-- `fas fa-heart` - 心脏
-- `fas fa-stomach` - 胃部
-- `fas fa-moon` - 月亮（失眠）
-- `fas fa-fire` - 火焰（热证）
-- `fas fa-snowflake` - 雪花（寒证）
-- `fas fa-tired` - 疲劳
-- `fas fa-dizzy` - 眩晕
-
-## Prompt 示例
-
-如果要让 AI 模型生成相应的 JSON 数据，可以使用类似以下的 prompt：
-
-```
-请根据以下症状和诊断信息，生成一个符合中医调理方案格式的 JSON 数据：
-
-患者症状：[列出症状]
-中医诊断：[诊断结果]
-调理方向：[调理思路]
-
-请按照以下 JSON 格式输出：
-{
-  "title": {
-    "icon": "fas fa-leaf",
-    "text": "大体状况（诊断名称）"
-  },
-  "symptoms": [
-    {"icon": "相关图标", "text": "症状描述"}
-  ],
-  "summary": {
-    "treatmentGoal": "调理目标",
-    "constitution": "体质特点",
-    "recommendation": "推荐节奏"
-  },
-  "note": "专业提示"
+### Q: 如何修改 UI 样式？
+A: 在 `index.html` 的 `<style>` 部分修改 CSS 样式变量：
+```css
+:root {
+    --tcm-brand-green: #2e7d32;
+    --tcm-accent-green: #66bb6a;
+    --tcm-soft-bg: #f5f8f4;
+    /* 其他样式变量 */
 }
 ```
 
-## 注意事项
+## 目录结构
+```
+new_project/
+├── index.html              # 前端主页面
+├── ai_backend.py           # 后端 API 服务
+├── test.py                 # 原始 API 测试脚本
+├── start_system.bat        # 一键启动脚本
+├── requirements.txt        # Python 依赖包
+├── prescription-example.json    # 处方示例数据
+├── prescription-examples.json   # 多种处方示例
+├── PRESCRIPTION_PROMPT_GUIDE.md # 处方生成指南
+├── PROJECT_SUMMARY.md      # 项目总结
+└── AI_SYSTEM_GUIDE.md      # 本说明文件
+```
 
-1. JSON 格式必须严格符合规范，缺少字段会导致显示错误
-2. 图标类名必须是有效的 Font Awesome 类名
-3. 建议在应用自定义数据前先使用格式化功能检查语法
-4. 系统仅用于展示目的，不能替代专业医疗诊断
+## 更新日志
+- v1.0 - 基础中医诊断展示系统
+- v1.1 - 集成 AI 生成功能
+- v1.2 - 优化用户界面和交互体验
+
+## 技术支持
+如有问题，请检查：
+1. Python 环境是否正确安装
+2. 依赖包是否安装完整
+3. API 密钥是否有效
+4. 网络连接是否正常
