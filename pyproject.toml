@@ -1,0 +1,13 @@
+[project]
+name = "traditional-chinese-medicine-diagnosis-and-treatment-services"
+version = "0.1.0"
+description = "The model trained based on the Bailian Large Model platform provides users with high-quality traditional Chinese medicine advice."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dashscope>=1.24.7",
+    "flask>=3.1.2",
+    "flask-cors>=6.0.1",
+    "python-dotenv>=1.1.1",
+    "requests>=2.32.5",
+]
